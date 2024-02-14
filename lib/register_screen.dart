@@ -1,9 +1,15 @@
+import 'dart:js';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:labourspot/sign_Screen.dart';
 import 'package:labourspot/worker_basic_info.dart';
 
+import 'cutomalert.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+  
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -15,6 +21,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final confirmPasswordController = TextEditingController();
   dynamic isObscured;
   dynamic   isObscuredConfirmPassword;
+  Register(String email, String password,confirmpassword)async{
+    if(email==""&& password==""&& confirmpassword==""){
+       showPleaseFillUpToast("error");
+    }
+    else{
+      UserCredential? usercredential;
+      try{
+        usercredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value){
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: ((context)=>SignScreen())));
+        });
+      }
+      on FirebaseAuthException catch(ex){
+        return showPleaseFillUpToast( ex.code.toString());
+      }
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -158,6 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ? const Icon(Icons.visibility_off,color: Colors.grey,)
                           : const Icon(Icons.visibility,color: Colors.grey,),
                       onPressed: () {
+                        
                         setState(() {
                           isObscuredConfirmPassword = ! isObscuredConfirmPassword;
                         });
@@ -181,13 +204,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                const WorkerBasicInfo()));
-                      },
+                     onTap:(){
+                            Register(emailController.text.toString(), passwordController.text.toString(),confirmPasswordController.text.toString());
+                     }
                     ),
                   ),
                 ),
@@ -292,6 +311,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+  
 
 }
 

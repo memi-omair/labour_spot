@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236321304032",
+    "project_id": "fypls-ce1f1",
+    "storage_bucket": "fypls-ce1f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236321304032:android:a842edd00a813da2b18f85",
+        "android_client_info": {
+          "package_name": "com.example.lanbour__spot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSjhnrOlYMxt0-ABXw5SUKvRL99oSUgYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
