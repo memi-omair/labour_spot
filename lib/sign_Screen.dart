@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:labourspot/cutomalert.dart';
+import 'package:labourspot/home_screen.dart';
 import 'package:labourspot/register_screen.dart';
 
 class SignScreen extends StatefulWidget {
@@ -10,6 +13,25 @@ class SignScreen extends StatefulWidget {
 
 class _SignScreenState extends State<SignScreen> {
   dynamic isObscured;
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+  login(String email,String password) async{
+    if(email=="" && password==""){
+             showPleaseFillUpToast("error");
+
+    }
+    else{
+      UserCredential? usercredential;
+      try{
+        usercredential= await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => HomeScreen(title:"login"))));
+        });
+      }
+      on FirebaseAuthException catch(ex){
+        return showPleaseFillUpToast( ex.code.toString());
+      }
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -53,6 +75,8 @@ class _SignScreenState extends State<SignScreen> {
                   height: 10,
                 ),
                 TextFormField(
+                  controller: emailController,
+
                   decoration: InputDecoration(
                     labelText: "Enter your Email",
                     prefixIcon: const Icon(Icons.email_outlined,color: Colors.grey,),
@@ -78,6 +102,8 @@ class _SignScreenState extends State<SignScreen> {
                 ),
                 TextFormField(
                   obscureText: isObscured,
+                  controller: passwordController,
+
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
                     labelText: "Enter your Password",
@@ -136,12 +162,9 @@ class _SignScreenState extends State<SignScreen> {
                           ),
                        ),
                   ),
+                  // on tap of login page 
                   onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                            const RegisterScreen()));
+                    login(emailController.text.toString(), passwordController.text.toString());
 
                   },
                 ),

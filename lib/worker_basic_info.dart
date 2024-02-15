@@ -31,7 +31,7 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                      const HomeScreen()));
+                      const HomeScreen(title: 'login',)));
             },
           ),
         ),
@@ -245,7 +245,7 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                const HomeScreen()));
+                                const HomeScreen(title: 'login',)));
                       },
                     ),
                   ),

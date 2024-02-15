@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:labourspot/home_screen.dart';
 import 'package:labourspot/sign_Screen.dart';
 import 'package:labourspot/worker_basic_info.dart';
 
@@ -29,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       UserCredential? usercredential;
       try{
         usercredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value){
-          Navigator.push(context as BuildContext, MaterialPageRoute(builder: ((context)=>SignScreen())));
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => SignScreen()));
         });
       }
       on FirebaseAuthException catch(ex){

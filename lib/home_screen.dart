@@ -6,7 +6,7 @@ import 'package:labourspot/worker_profile.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required String title});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
