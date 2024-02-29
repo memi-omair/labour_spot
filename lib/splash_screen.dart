@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:labourspot/home_screen.dart';
 import 'package:labourspot/sign_Screen.dart';
 
 
@@ -43,10 +45,23 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 class SplashServices{
   void isLogin(BuildContext context){
-    Timer(const Duration(seconds: 3),()=>Navigator.pushReplacement(
+    final auth = FirebaseAuth.instance;
+    final User = auth.currentUser;
+    if(User != null){
+      Timer(const Duration(seconds: 3),()=>Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+            const HomeScreen(title: '',))));
+
+    }
+    else{
+      Timer(const Duration(seconds: 3),()=>Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) =>
             const SignScreen())));
+    }
+    
   }
 }
