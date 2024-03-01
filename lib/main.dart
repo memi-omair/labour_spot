@@ -16,6 +16,8 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   runApp((const MaterialApp(
+          debugShowCheckedModeBanner: false, // Set this property to false
+
     home: SplashScreen(),
   )));
 }

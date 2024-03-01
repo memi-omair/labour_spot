@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:labourspot/chat_screen.dart';
+import 'package:labourspot/cutomalert.dart';
+import 'package:labourspot/sign_Screen.dart';
 import 'package:labourspot/worker_profile.dart';
 
 import 'package:url_launcher/url_launcher_string.dart';
@@ -13,10 +16,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final auth = FirebaseAuth.instance;         //firebase auth
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      drawer: const Drawer(
+                                             //drawer is here 
+      drawer:  Drawer(
+        child: ListView(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text("My Profile"),
+            onTap: () {
+              // Handle myProfile click event
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text("Account Holder Name"),
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text("Logout"),
+            onTap: () {
+              // Handle logout button click event
+              auth.signOut().then((value) {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> SignScreen() ));
+              }).onError((error, stackTrace) {
+                Column(mainAxisAlignment: MainAxisAlignment.center);
+
+                CustomToast.show(context, " Netork Error ");
+
+              });
+            },
+          ),
+        ],
+      ),
       ),
       appBar: AppBar(
         actions: const [

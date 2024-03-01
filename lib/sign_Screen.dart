@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:labourspot/cutomalert.dart';
 import 'package:labourspot/home_screen.dart';
 import 'package:labourspot/register_screen.dart';
+import 'package:labourspot/worker_basic_info.dart';
 
 class SignScreen extends StatefulWidget {
   const SignScreen({super.key});
@@ -17,18 +18,22 @@ class _SignScreenState extends State<SignScreen> {
   TextEditingController passwordController=TextEditingController();
   login(String email,String password) async{
     if(email=="" && password==""){
-             showPleaseFillUpToast("error");
+          CustomToast.show(context, " provide necessory iformation ");
 
     }
     else{
       UserCredential? usercredential;
       try{
         usercredential= await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => HomeScreen(title:"login"))));
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => WorkerBasicInfo(title:"login"))));
+        }).onError((error, stackTrace) {
+          Column(mainAxisAlignment: MainAxisAlignment.center,);
+
+                CustomToast.show(context, " fill up and provide right information ");
         });
       }
       on FirebaseAuthException catch(ex){
-        return showPleaseFillUpToast( ex.code.toString());
+        return ( ex.code.toString());
       }
     }
   }
@@ -164,7 +169,8 @@ class _SignScreenState extends State<SignScreen> {
                   ),
                   // on tap of login page 
                   onTap: (){
-                    login(emailController.text.toString(), passwordController.text.toString());
+                    login(emailController.text.toString(), 
+                    passwordController.text.toString());
 
                   },
                 ),

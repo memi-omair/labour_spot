@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:labourspot/home_screen.dart';
 
 class WorkerBasicInfo extends StatefulWidget {
-  const WorkerBasicInfo({super.key});
+  const WorkerBasicInfo({super.key, required String title});
 
   @override
   State<WorkerBasicInfo> createState() => _WorkerBasicInfoState();
@@ -80,12 +80,17 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                   height: 10,
                 ),
                 TextFormField(
-                  initialValue: "Zubair Ahmed",
+                  
                   decoration: InputDecoration(
+                    labelText: "Name",
                     enabledBorder: buildOutlineInputBorder(),
                     focusedBorder: buildOutlineInputBorder(),
                   ),
                 ),
+              
+
+
+
 
                 const SizedBox(
                   height: 20,
@@ -102,8 +107,9 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                   height: 10,
                 ),
                 TextFormField(
-                  initialValue: "03074240740",
+                  
                   decoration: InputDecoration(
+                    labelText: "contact Number",
                     enabledBorder: buildOutlineInputBorder(),
                     focusedBorder: buildOutlineInputBorder(),
                   ),
@@ -123,8 +129,8 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                   height: 10,
                 ),
                 TextFormField(
-                  initialValue: "Sector 50, Bahria town, Islamabad",
                   decoration: InputDecoration(
+                    labelText: "Address",
                     enabledBorder: buildOutlineInputBorder(),
                     focusedBorder: buildOutlineInputBorder(),
                   ),
@@ -157,8 +163,8 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                           SizedBox(
                             width: 125,
                             child: TextFormField(
-                             initialValue: "Pakistan",
                               decoration: InputDecoration(
+                                labelText: "Country",
                                 enabledBorder: buildOutlineInputBorder(),
                                 focusedBorder: buildOutlineInputBorder(),
                               ),
@@ -185,8 +191,8 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                             SizedBox(
                               width: 125,
                               child: TextFormField(
-                               initialValue: "Rawalpindi",
                                 decoration: InputDecoration(
+                                  labelText: "City",
                                   enabledBorder: buildOutlineInputBorder(),
                                   focusedBorder: buildOutlineInputBorder(),
                                 ),
@@ -217,6 +223,7 @@ class _WorkerBasicInfoState extends State<WorkerBasicInfo> {
                   maxLines: 5,
                  initialValue: "Employee will write about his experience in his job",
                   decoration: InputDecoration(
+                    labelText: "About",
                     enabledBorder: buildOutlineInputBorder(),
                     focusedBorder: buildOutlineInputBorder(),
                   ),
